@@ -1,4 +1,9 @@
 .app_container {
   display: flex;
   height: 90vh;
+
+  &__main {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }

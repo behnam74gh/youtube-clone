@@ -18,7 +18,7 @@ const App = () => {
           toggleSidebar={toggleSidebar}
           setToggleSidebarHandler={toggleSidebarHandler}
         />
-        <Container fluid className="app__main">
+        <Container fluid className="app_container__main">
           <HomeScreen />
         </Container>
       </div>
