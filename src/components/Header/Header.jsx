@@ -6,10 +6,14 @@ import { MdNotifications, MdApps } from "react-icons/md";
 import ProfileFakeImg from "../../assets/images/pro-8.png";
 import "./_header.scss";
 
-const Header = () => {
+const Header = ({ setToggleSidebarHandler }) => {
   return (
-    <div className="border border-dark header">
-      <FaBars className="header__menu" size={26} />
+    <div className="header">
+      <FaBars
+        className="header__menu"
+        size={26}
+        onClick={setToggleSidebarHandler}
+      />
       <img
         src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
         alt="UT.Logo"
