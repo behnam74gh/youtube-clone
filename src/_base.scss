@@ -19,3 +19,14 @@ body {
   color: $text-color;
   letter-spacing: 0.1px;
 }
+
+@mixin line-clamp($number) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $number;
+  -webkit-box-orient: vertical;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
