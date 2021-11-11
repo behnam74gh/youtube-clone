@@ -4,6 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps } from "react-icons/md";
 
 import ProfileFakeImg from "../../assets/images/pro-8.png";
+import UTubeLogo from "../../assets/images/youtube_PNG2.png";
 import "./_header.scss";
 
 const Header = ({ setToggleSidebarHandler }) => {
@@ -14,11 +15,7 @@ const Header = ({ setToggleSidebarHandler }) => {
         size={26}
         onClick={setToggleSidebarHandler}
       />
-      <img
-        src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
-        alt="UT.Logo"
-        className="header__logo"
-      />
+      <img src={UTubeLogo} alt="UT.Logo" className="header__logo" />
       <form>
         <input type="search" placeholder="Search.." />
         <button type="submit">

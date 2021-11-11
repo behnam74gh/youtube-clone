@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
+import React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Layout from "./Layout/Layout";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import "./_App.scss";
 
 const App = () => {
-  const [toggleSidebar, setToggleSidebar] = useState(false);
-
-  const toggleSidebarHandler = () => setToggleSidebar(!toggleSidebar);
-
   return (
-    <React.Fragment>
-      <Header setToggleSidebarHandler={toggleSidebarHandler} />
-      <div className="app_container">
-        <Sidebar
-          toggleSidebar={toggleSidebar}
-          setToggleSidebarHandler={toggleSidebarHandler}
-        />
-        <Container fluid className="app_container__main">
-          <HomeScreen />
-        </Container>
-      </div>
-    </React.Fragment>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact>
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        </Route>
+        <Route path="/search">
+          <Layout>
+            <h2>search screen</h2>
+          </Layout>
+        </Route>
+        <Route path="/login">
+          <LoginScreen />
+        </Route>
+        <Route>
+          <Redirect path="/" />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
