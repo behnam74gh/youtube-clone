@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../../redux/actions/auth.action";
+import { useHistory } from "react-router-dom";
 import UTubeLogo from "../../assets/images/youtube_PNG2.png";
 import "./_LoginScreen.scss";
-import { useHistory } from "react-router-dom";
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
