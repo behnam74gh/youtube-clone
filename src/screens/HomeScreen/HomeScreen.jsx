@@ -12,7 +12,7 @@ const HomeScreen = () => {
   const { videos } = useSelector((state) => state.homeVideos);
 
   useEffect(() => {
-    // dispatch(getPopularVideos());
+    dispatch(getPopularVideos());
   }, [dispatch]);
 
   return (
