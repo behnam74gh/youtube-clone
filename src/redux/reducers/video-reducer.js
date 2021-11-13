@@ -9,6 +9,7 @@ const initialState = {
   loading: false,
   nextPageToken: null,
   errorText: "",
+  activeCategory: "",
 };
 
 export const homeVideoReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ export const homeVideoReducer = (state = initialState, action) => {
         loading: false,
         videos: action.payload.videos,
         nextPageToken: action.payload.nextPageToken,
+        activeCategory: action.payload.category,
         errorText: "",
       };
     case HOME_VIDEO_FAIL:
@@ -30,6 +32,7 @@ export const homeVideoReducer = (state = initialState, action) => {
         loading: false,
         videos: [],
         nextPageToken: null,
+        activeCategory: "",
         errorText: action.payload,
       };
     default:

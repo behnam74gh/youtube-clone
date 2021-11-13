@@ -23,6 +23,8 @@ const Video = ({ video }) => {
     },
   } = video;
 
+  const _videoId = id?.videoId || id;
+
   useEffect(() => {
     const getVideoDetails = async () => {
       const {
@@ -30,7 +32,7 @@ const Video = ({ video }) => {
       } = await axiosRequest("/videos", {
         params: {
           part: "contentDetails,statistics",
-          id: id,
+          id: _videoId,
         },
       });
 
@@ -39,7 +41,7 @@ const Video = ({ video }) => {
     };
 
     getVideoDetails();
-  }, [id]);
+  }, [_videoId]);
 
   useEffect(() => {
     const getChannelIcon = async () => {

@@ -21,6 +21,42 @@ export const getPopularVideos = () => async (dispatch) => {
       },
     });
 
+    // console.log("=>", data);
+
+    dispatch({
+      type: HOME_VIDEO_SUCCESS,
+      payload: {
+        videos: data.items,
+        nextPageToken: data.nextPageToken,
+        category: "All",
+      },
+    });
+  } catch (error) {
+    console.log(error, error.message);
+    dispatch({
+      type: HOME_VIDEO_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
+  const { nextPageToken } = getState().homeVideos;
+  try {
+    dispatch({
+      type: HOME_VIDEO_REQUEST,
+    });
+
+    const { data } = await axiosRequest("/search", {
+      params: {
+        part: "snippet",
+        maxResults: 20,
+        pageToken: nextPageToken,
+        q: keyword,
+        type: "video",
+      },
+    });
+
     console.log("=>", data);
 
     dispatch({
@@ -28,6 +64,7 @@ export const getPopularVideos = () => async (dispatch) => {
       payload: {
         videos: data.items,
         nextPageToken: data.nextPageToken,
+        category: keyword,
       },
     });
   } catch (error) {
