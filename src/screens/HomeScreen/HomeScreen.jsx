@@ -21,7 +21,7 @@ const HomeScreen = () => {
       <Row>
         {videos?.length > 0 ? (
           videos.map((item) => (
-            <Col lg={3} md={4} key={item.id}>
+            <Col lg={3} md={4} key={item.id?.videoId || item.id}>
               <Video video={item} />
             </Col>
           ))
