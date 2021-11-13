@@ -1,9 +1,10 @@
 .app_container {
   display: flex;
-  height: 90vh;
+  // height: 90vh;
+  margin-top: 10vh;
 
-  &__main {
-    max-height: 90vh;
-    overflow-y: auto;
-  }
+  // &__main {
+  //   max-height: 90vh;
+  //   overflow-y: auto;
+  // }
 }

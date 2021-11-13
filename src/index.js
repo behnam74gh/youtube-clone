@@ -7,6 +7,7 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./_base.scss";
 
 ReactDOM.render(

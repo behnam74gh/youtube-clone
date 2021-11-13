@@ -22,7 +22,10 @@ export const homeVideoReducer = (state = initialState, action) => {
     case HOME_VIDEO_SUCCESS:
       return {
         loading: false,
-        videos: action.payload.videos,
+        videos:
+          state.activeCategory === action.payload.activeCategory
+            ? [...state.videos, ...action.payload.videos]
+            : action.payload.videos,
         nextPageToken: action.payload.nextPageToken,
         activeCategory: action.payload.category,
         errorText: "",

@@ -5,7 +5,8 @@ import {
 } from "../types/video.type";
 import axiosRequest from "../../api";
 
-export const getPopularVideos = () => async (dispatch) => {
+export const getPopularVideos = () => async (dispatch, getState) => {
+  const { nextPageToken } = getState().homeVideos;
   try {
     dispatch({
       type: HOME_VIDEO_REQUEST,
@@ -17,7 +18,7 @@ export const getPopularVideos = () => async (dispatch) => {
         chart: "mostPopular",
         regionCode: "US",
         maxResults: 20,
-        pageToken: "",
+        pageToken: nextPageToken,
       },
     });
 

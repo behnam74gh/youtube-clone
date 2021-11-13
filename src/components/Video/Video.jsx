@@ -3,6 +3,7 @@ import { AiFillEye } from "react-icons/ai";
 import axiosRequest from "../../api";
 import moment from "moment";
 import numeral from "numeral";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 // import FakeVideoImage from "../../assets/images/leon.jpg";
 // import FakeVideoCompany from "../../assets/images/1byy.jpg";
 import "./_Video.scss";
@@ -66,8 +67,9 @@ const Video = ({ video }) => {
   return (
     <div className="video">
       <div className="video__top">
-        <img src={medium.url} alt="video img" />
-        <span>{_duration}</span>
+        {/* <img src={medium.url} alt="video img" /> */}
+        <LazyLoadImage src={medium.url} effect="blur" />
+        <span className="video__top__duration">{_duration}</span>
       </div>
       <div className="video__title">
         {title || "create app in 5 minutes #made by behnam ghazaghi from iran"}
@@ -79,7 +81,8 @@ const Video = ({ video }) => {
         <span>{moment(publishedAt).fromNow()}</span>
       </div>
       <div className="video__channel">
-        <img src={channelIcon?.url} alt="company" />
+        {/* <img src={channelIcon?.url} alt="company" /> */}
+        <LazyLoadImage src={channelIcon?.url} effect="blur" />
         <p>{channelTitle}</p>
       </div>
     </div>
