@@ -8,6 +8,9 @@ import {
   RELATED_VIDEO_REQUEST,
   RELATED_VIDEO_SUCCESS,
   RELATED_VIDEO_FAIL,
+  SEARCH_VIDEO_REQUEST,
+  SEARCH_VIDEO_SUCCESS,
+  SEARCH_VIDEO_FAIL,
 } from "../types/video.type";
 
 const initialState1 = {
@@ -102,6 +105,38 @@ export const relatedVideoReducer = (state = initialState3, action) => {
         errorText: "",
       };
     case RELATED_VIDEO_FAIL:
+      return {
+        ...state,
+        loading: false,
+        errorText: payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const initialState4 = {
+  loading: false,
+  videos: [],
+  errorText: "",
+};
+
+export const searchedVideosReducer = (state = initialState4, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case SEARCH_VIDEO_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SEARCH_VIDEO_SUCCESS:
+      return {
+        loading: false,
+        videos: payload,
+        errorText: "",
+      };
+    case SEARCH_VIDEO_FAIL:
       return {
         ...state,
         loading: false,

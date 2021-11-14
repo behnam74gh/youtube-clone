@@ -8,6 +8,9 @@ import {
   RELATED_VIDEO_REQUEST,
   RELATED_VIDEO_SUCCESS,
   RELATED_VIDEO_FAIL,
+  SEARCH_VIDEO_REQUEST,
+  SEARCH_VIDEO_SUCCESS,
+  SEARCH_VIDEO_FAIL,
 } from "../types/video.type";
 import axiosRequest from "../../api";
 
@@ -132,6 +135,36 @@ export const getRelatedVideos = (id) => async (dispatch) => {
     dispatch({
       type: RELATED_VIDEO_FAIL,
       payload: error.response.data.message,
+    });
+  }
+};
+
+export const getVideosBySearch = (query) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SEARCH_VIDEO_REQUEST,
+    });
+
+    const { data } = await axiosRequest("/search", {
+      params: {
+        part: "snippet",
+        maxResults: 20,
+        q: query,
+        type: "video,channel",
+      },
+    });
+
+    console.log("=>", data);
+
+    dispatch({
+      type: SEARCH_VIDEO_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log(error, error.message);
+    dispatch({
+      type: SEARCH_VIDEO_FAIL,
+      payload: error.message,
     });
   }
 };

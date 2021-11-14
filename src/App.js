@@ -4,6 +4,7 @@ import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import SearchScreen from "./screens/SearchScreen/SearchScreen";
 import WatchScreen from "./screens/WatchScreen/WatchScreen";
 import "./_App.scss";
 
@@ -29,9 +30,9 @@ const App = () => {
           <WatchScreen />
         </Layout>
       </Route>
-      <Route path="/search">
+      <Route path="/search/:query">
         <Layout>
-          <h2>search screen</h2>
+          <SearchScreen />
         </Layout>
       </Route>
       <Route path="/login">
