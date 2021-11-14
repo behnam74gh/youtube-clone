@@ -7,11 +7,14 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 // import FakeVideoImage from "../../assets/images/leon.jpg";
 // import FakeVideoCompany from "../../assets/images/1byy.jpg";
 import "./_Video.scss";
+import { useHistory } from "react-router-dom";
 
 const Video = ({ video }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
+
+  const history = useHistory();
 
   const {
     id,
@@ -61,11 +64,13 @@ const Video = ({ video }) => {
     getChannelIcon();
   }, [channelId]);
 
+  const showVideoHandel = () => history.push(`/watch/${_videoId}`);
+
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
 
   return (
-    <div className="video">
+    <div className="video" onClick={showVideoHandel}>
       <div className="video__top">
         {/* <img src={medium.url} alt="video img" /> */}
         <LazyLoadImage src={medium.url} effect="blur" />

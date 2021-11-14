@@ -42,21 +42,18 @@ const HomeScreen = () => {
         }
         className="row"
       >
-        {loading ? (
-          [...Array(20)].map((item, i) => (
-            <Col lg={3} md={4} key={i}>
-              <SkeletonVideos />
-            </Col>
-          ))
-        ) : videos?.length > 0 ? (
-          videos.map((item) => (
-            <Col lg={3} md={4} key={item.id?.videoId || item.id}>
-              <Video video={item} />
-            </Col>
-          ))
-        ) : (
-          <h2>there is no video</h2>
-        )}
+        {loading
+          ? [...Array(20)].map((item, i) => (
+              <Col lg={3} md={4} key={i}>
+                <SkeletonVideos />
+              </Col>
+            ))
+          : videos?.length > 0 &&
+            videos.map((item) => (
+              <Col lg={3} md={4} key={item.id?.videoId || item.id}>
+                <Video video={item} />
+              </Col>
+            ))}
       </InfiniteScroll>
     </Container>
   );
