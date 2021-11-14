@@ -51,7 +51,7 @@ export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
       payload: data?.items?.length !== 0,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error, error.response);
     // dispatch({
     //   type: CHANNEL_DETAILS_FAIL,
     //   payload: error.response.data,

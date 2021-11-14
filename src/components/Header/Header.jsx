@@ -5,14 +5,14 @@ import { MdNotifications, MdApps } from "react-icons/md";
 
 import ProfileFakeImg from "../../assets/images/pro-8.png";
 import UTubeLogo from "../../assets/images/youtube_PNG2.png";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./_header.scss";
 
 const Header = ({ setToggleSidebarHandler }) => {
   const [queryText, setQueryText] = useState("");
 
-  // const { user } = useSelector((state) => state.userLogin);
+  const { user } = useSelector((state) => state.userLogin);
 
   const history = useHistory();
 
@@ -44,7 +44,7 @@ const Header = ({ setToggleSidebarHandler }) => {
       <div className="header__icons">
         <MdNotifications size={28} />
         <MdApps size={28} />
-        <img src={ProfileFakeImg} alt="avatar" />
+        <img src={user ? user.photoUrl : ProfileFakeImg} alt="avatar" />
       </div>
     </div>
   );

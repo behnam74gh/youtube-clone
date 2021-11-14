@@ -11,7 +11,8 @@
 
   &__thumbnail {
     width: 100%;
-
+    max-height: 200px;
+    object-fit: fill;
     &__channel {
       width: 50%;
       border-radius: 50%;

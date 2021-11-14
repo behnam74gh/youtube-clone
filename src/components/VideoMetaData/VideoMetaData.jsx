@@ -1,16 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdThumbDown, MdThumbUp } from "react-icons/md";
 import moment from "moment";
 import numeral from "numeral";
 import ShowMoreText from "react-show-more-text";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkSubscriptionStatus,
+  // checkSubscriptionStatus,
   getChannelDetails,
 } from "../../redux/actions/channel.action";
 import "./_VideoMetaData.scss";
 
-const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
+const VideoMetaData = ({ video, videoId }) => {
+  const [snippet, setSnippet] = useState({});
+  const [statistics, setStatistics] = useState({});
+
+  useEffect(() => {
+    if (video && video.snippet && video.statistics) {
+      setSnippet(video.snippet);
+      setStatistics(video.statistics);
+    }
+  }, [video]);
+
   const { channelId, channelTitle, description, title, publishedAt } = snippet;
   const { viewCount, likeCount, dislikeCount } = statistics;
 
@@ -18,11 +28,14 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
     (state) => state.channelDetails
   );
   const dispatch = useDispatch();
-
+  // console.log(channel, subscriptionStatus);
   const { snippet: channelSnippet, statistics: channelStatistics } = channel;
+
   useEffect(() => {
-    dispatch(getChannelDetails(channelId));
-    dispatch(checkSubscriptionStatus(channelId));
+    if (channelId) {
+      dispatch(getChannelDetails(channelId));
+      // dispatch(checkSubscriptionStatus(channelId));
+    }
   }, [dispatch, channelId]);
 
   return (
@@ -63,10 +76,9 @@ const VideoMetaData = ({ video: { snippet, statistics }, videoId }) => {
           </div>
         </div>
 
-        <button
-          className={`btn border-0 p-2 m-2 ${subscriptionStatus && "btn-gray"}`}
-        >
-          {subscriptionStatus ? "Subscribed" : "Subscribe"}
+        <button className={`btn border-0 p-2 m-2`}>
+          {/*subscriptionStatus && "btn-gray"*/}
+          {/*subscriptionStatus ? "Subscribed" : "Subscribe"*/}
         </button>
       </div>
 
