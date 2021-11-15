@@ -4,6 +4,7 @@ import moment from "moment";
 import numeral from "numeral";
 import ShowMoreText from "react-show-more-text";
 import { useDispatch, useSelector } from "react-redux";
+import HelmetCustom from "../HelmetCustom";
 import {
   // checkSubscriptionStatus,
   getChannelDetails,
@@ -40,6 +41,7 @@ const VideoMetaData = ({ video, videoId }) => {
 
   return (
     <div className="videoMetaData py-2">
+      <HelmetCustom title={title} description={description} />
       <div className="videoMetaData__top">
         <h5>{title}</h5>
 

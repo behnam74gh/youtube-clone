@@ -11,6 +11,7 @@ import {
 const Comments = ({ videoId, totalComments }) => {
   const [textComment, setTextComment] = useState("");
   const { comments } = useSelector((state) => state.commentList);
+  const { photoUrl } = useSelector((state) => state.userLogin?.user);
   const dispatch = useDispatch();
 
   const _comments = comments?.map(
@@ -36,7 +37,7 @@ const Comments = ({ videoId, totalComments }) => {
       <p>{totalComments} comments</p>
       <div className="comments__form">
         <img
-          src={ProfileFakeImg}
+          src={photoUrl || ProfileFakeImg}
           alt="profile-img"
           className="rounded-circle mr-3"
         />

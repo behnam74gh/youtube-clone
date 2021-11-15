@@ -38,30 +38,22 @@ const Sidebar = ({ toggleSidebar, setToggleSidebarHandler }) => {
           <span>Subscriptions</span>
         </li>
       </Link>
-      <Link to="">
-        <li>
-          <MdThumbUp size={23} />
-          <span>Liked Video</span>
-        </li>
-      </Link>
-      <Link to="">
-        <li>
-          <MdHistory size={23} />
-          <span>History</span>
-        </li>
-      </Link>
-      <Link to="">
-        <li>
-          <MdLibraryBooks size={23} />
-          <span>Library</span>
-        </li>
-      </Link>
-      <Link to="">
-        <li>
-          <MdSentimentDissatisfied size={23} />
-          <span>I don't Know</span>
-        </li>
-      </Link>
+      <li>
+        <MdThumbUp size={23} />
+        <span>Liked Video</span>
+      </li>
+      <li>
+        <MdHistory size={23} />
+        <span>History</span>
+      </li>
+      <li>
+        <MdLibraryBooks size={23} />
+        <span>Library</span>
+      </li>
+      <li>
+        <MdSentimentDissatisfied size={23} />
+        <span>I don't Know</span>
+      </li>
       <hr />
       <li onClick={logoutHandler}>
         <MdExitToApp size={23} />
