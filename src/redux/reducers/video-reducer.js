@@ -11,6 +11,12 @@ import {
   SEARCH_VIDEO_REQUEST,
   SEARCH_VIDEO_SUCCESS,
   SEARCH_VIDEO_FAIL,
+  SUBSCRIPTIONS_CHANNEL_REQUEST,
+  SUBSCRIPTIONS_CHANNEL_SUCCESS,
+  SUBSCRIPTIONS_CHANNEL_FAIL,
+  CHANNEL_VIDEOS_REQUEST,
+  CHANNEL_VIDEOS_SUCCESS,
+  CHANNEL_VIDEOS_FAIL,
 } from "../types/video.type";
 
 const initialState1 = {
@@ -137,6 +143,70 @@ export const searchedVideosReducer = (state = initialState4, action) => {
         errorText: "",
       };
     case SEARCH_VIDEO_FAIL:
+      return {
+        ...state,
+        loading: false,
+        errorText: payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const initialState5 = {
+  loading: false,
+  videos: [],
+  errorText: "",
+};
+
+export const subscriptionsChannelReducer = (state = initialState5, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case SUBSCRIPTIONS_CHANNEL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SUBSCRIPTIONS_CHANNEL_SUCCESS:
+      return {
+        loading: false,
+        videos: payload,
+        errorText: "",
+      };
+    case SUBSCRIPTIONS_CHANNEL_FAIL:
+      return {
+        ...state,
+        loading: false,
+        errorText: payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const initialState6 = {
+  loading: false,
+  videos: [],
+  errorText: "",
+};
+
+export const channelVideosReducer = (state = initialState6, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case CHANNEL_VIDEOS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CHANNEL_VIDEOS_SUCCESS:
+      return {
+        loading: false,
+        videos: payload,
+        errorText: "",
+      };
+    case CHANNEL_VIDEOS_FAIL:
       return {
         ...state,
         loading: false,

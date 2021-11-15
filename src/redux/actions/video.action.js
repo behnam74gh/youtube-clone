@@ -11,6 +11,12 @@ import {
   SEARCH_VIDEO_REQUEST,
   SEARCH_VIDEO_SUCCESS,
   SEARCH_VIDEO_FAIL,
+  SUBSCRIPTIONS_CHANNEL_REQUEST,
+  SUBSCRIPTIONS_CHANNEL_SUCCESS,
+  SUBSCRIPTIONS_CHANNEL_FAIL,
+  CHANNEL_VIDEOS_REQUEST,
+  CHANNEL_VIDEOS_SUCCESS,
+  CHANNEL_VIDEOS_FAIL,
 } from "../types/video.type";
 import axiosRequest from "../../api";
 
@@ -165,6 +171,80 @@ export const getVideosBySearch = (query) => async (dispatch) => {
     dispatch({
       type: SEARCH_VIDEO_FAIL,
       payload: error.message,
+    });
+  }
+};
+
+export const getSubscribedChannels = () => async (dispatch, getState) => {
+  const { accessToken } = getState().userLogin;
+
+  try {
+    dispatch({
+      type: SUBSCRIPTIONS_CHANNEL_REQUEST,
+    });
+
+    const { data } = await axiosRequest("/subscriptions", {
+      params: {
+        part: "snippet,contentDetails",
+        mine: true,
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log("=>", data);
+
+    dispatch({
+      type: SUBSCRIPTIONS_CHANNEL_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log(error, error.message);
+    dispatch({
+      type: SUBSCRIPTIONS_CHANNEL_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+export const getVideosByChannel = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CHANNEL_VIDEOS_REQUEST,
+    });
+
+    // 1- get upload playlist id
+    const {
+      data: { items },
+    } = await axiosRequest("/channels", {
+      params: {
+        part: "contentDetails",
+        id: id,
+      },
+    });
+
+    const uploadPlayList = items[0].contentDetails.relatedPlayLists.uploads;
+
+    console.log("=>", items);
+
+    // 2- get videos using the id
+    const { data } = await axiosRequest("/playlistItems", {
+      params: {
+        part: "contentDetails,snippet",
+        playlistId: uploadPlayList,
+        maxResults: 30,
+      },
+    });
+
+    dispatch({
+      type: CHANNEL_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log(error, error.message, error.response.data.message);
+    dispatch({
+      type: CHANNEL_VIDEOS_FAIL,
+      payload: error.response.data.message,
     });
   }
 };

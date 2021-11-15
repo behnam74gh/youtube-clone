@@ -8,6 +8,7 @@ import {
   MdHome,
   MdSentimentDissatisfied,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../../redux/actions/auth.action";
 
@@ -25,30 +26,42 @@ const Sidebar = ({ toggleSidebar, setToggleSidebarHandler }) => {
       className={toggleSidebar ? "sidebar open" : "sidebar"}
       onClick={setToggleSidebarHandler}
     >
-      <li>
-        <MdHome size={23} />
-        <span>Home</span>
-      </li>
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscriptions</span>
-      </li>
-      <li>
-        <MdThumbUp size={23} />
-        <span>Liked Video</span>
-      </li>
-      <li>
-        <MdHistory size={23} />
-        <span>History</span>
-      </li>
-      <li>
-        <MdLibraryBooks size={23} />
-        <span>Library</span>
-      </li>
-      <li>
-        <MdSentimentDissatisfied size={23} />
-        <span>I don't Know</span>
-      </li>
+      <Link to="/">
+        <li>
+          <MdHome size={23} />
+          <span>Home</span>
+        </li>
+      </Link>
+      <Link to="/feed/subscriptions">
+        <li>
+          <MdSubscriptions size={23} />
+          <span>Subscriptions</span>
+        </li>
+      </Link>
+      <Link to="">
+        <li>
+          <MdThumbUp size={23} />
+          <span>Liked Video</span>
+        </li>
+      </Link>
+      <Link to="">
+        <li>
+          <MdHistory size={23} />
+          <span>History</span>
+        </li>
+      </Link>
+      <Link to="">
+        <li>
+          <MdLibraryBooks size={23} />
+          <span>Library</span>
+        </li>
+      </Link>
+      <Link to="">
+        <li>
+          <MdSentimentDissatisfied size={23} />
+          <span>I don't Know</span>
+        </li>
+      </Link>
       <hr />
       <li onClick={logoutHandler}>
         <MdExitToApp size={23} />

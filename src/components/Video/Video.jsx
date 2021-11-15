@@ -9,7 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./_Video.scss";
 import { useHistory } from "react-router-dom";
 
-const Video = ({ video }) => {
+const Video = ({ video, channelScreen }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
@@ -24,10 +24,11 @@ const Video = ({ video }) => {
       title,
       publishedAt,
       thumbnails: { medium },
+      contentDetails,
     },
   } = video;
 
-  const _videoId = id?.videoId || id;
+  const _videoId = id?.videoId || contentDetails?.videoId || id;
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -85,11 +86,13 @@ const Video = ({ video }) => {
         </span>
         <span>{moment(publishedAt).fromNow()}</span>
       </div>
-      <div className="video__channel">
-        {/* <img src={channelIcon?.url} alt="company" /> */}
-        <LazyLoadImage src={channelIcon?.url} effect="blur" />
-        <p>{channelTitle}</p>
-      </div>
+      {!channelScreen && (
+        <div className="video__channel">
+          {/* <img src={channelIcon?.url} alt="company" /> */}
+          <LazyLoadImage src={channelIcon?.url} effect="blur" />
+          <p>{channelTitle}</p>
+        </div>
+      )}
     </div>
   );
 };
