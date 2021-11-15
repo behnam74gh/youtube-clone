@@ -145,7 +145,7 @@ export const getRelatedVideos = (id) => async (dispatch) => {
   }
 };
 
-export const getVideosBySearch = (query) => async (dispatch) => {
+export const getVideosBySearch = (keyword) => async (dispatch) => {
   try {
     dispatch({
       type: SEARCH_VIDEO_REQUEST,
@@ -155,7 +155,7 @@ export const getVideosBySearch = (query) => async (dispatch) => {
       params: {
         part: "snippet",
         maxResults: 20,
-        q: query,
+        q: keyword,
         type: "video,channel",
       },
     });

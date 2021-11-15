@@ -26,7 +26,7 @@ const VideoHorizontal = ({ video, searchScreen, subScreen }) => {
     },
   } = video;
 
-  const isVideo = !(id.kind === "youtube#video" || subScreen);
+  const isVideo = id.kind === "youtube#video" || subScreen;
 
   const history = useHistory();
 

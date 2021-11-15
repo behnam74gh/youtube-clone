@@ -11,10 +11,10 @@ const SingleComment = ({ comment }) => {
       <img
         src={authorProfileImageUrl || ProfileFakeImg}
         alt="profile-img"
-        className="rounded-circle mr-3"
+        className="rounded-circle"
       />
 
-      <div className="comment__body">
+      <div className="comment__body px-3">
         <p className="comment__header mb-1">
           {authorDisplayName} {moment(publishedAt).fromNow()}
         </p>

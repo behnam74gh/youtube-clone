@@ -33,6 +33,7 @@ export const getChannelDetails = (id) => async (dispatch) => {
 
 export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
   const { accessToken } = getState().userLogin;
+  console.log("token=>", accessToken);
   try {
     const { data } = await axiosRequest("/subscriptions", {
       params: {
@@ -45,7 +46,7 @@ export const checkSubscriptionStatus = (id) => async (dispatch, getState) => {
       },
     });
 
-    console.log(data);
+    console.log("subscription->", data);
     dispatch({
       type: SET_SUBSCRIPTION_STATUS,
       payload: data?.items?.length !== 0,

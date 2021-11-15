@@ -6,7 +6,7 @@ import ShowMoreText from "react-show-more-text";
 import { useDispatch, useSelector } from "react-redux";
 import HelmetCustom from "../HelmetCustom";
 import {
-  // checkSubscriptionStatus,
+  checkSubscriptionStatus,
   getChannelDetails,
 } from "../../redux/actions/channel.action";
 import "./_VideoMetaData.scss";
@@ -29,13 +29,13 @@ const VideoMetaData = ({ video, videoId }) => {
     (state) => state.channelDetails
   );
   const dispatch = useDispatch();
-  // console.log(channel, subscriptionStatus);
+  console.log(channel, subscriptionStatus);
   const { snippet: channelSnippet, statistics: channelStatistics } = channel;
 
   useEffect(() => {
     if (channelId) {
       dispatch(getChannelDetails(channelId));
-      // dispatch(checkSubscriptionStatus(channelId));
+      dispatch(checkSubscriptionStatus(channelId));
     }
   }, [dispatch, channelId]);
 
@@ -80,7 +80,7 @@ const VideoMetaData = ({ video, videoId }) => {
 
         <button className={`btn border-0 p-2 m-2`}>
           {/*subscriptionStatus && "btn-gray"*/}
-          {/*subscriptionStatus ? "Subscribed" : "Subscribe"*/}
+          {subscriptionStatus ? "Subscribed" : "Subscribe"}
         </button>
       </div>
 
